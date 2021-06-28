@@ -1,6 +1,6 @@
 package com.techlads.demoapp.utils
 
-class Gener {
+class Genre {
     companion object{
 
         private val genreMap = mapOf<Int, String>(

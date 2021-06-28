@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.techlads.demoapp.Config
 import com.techlads.demoapp.ui.details.DetailsActivity
-import com.techlads.demoapp.utils.Gener
+import com.techlads.demoapp.utils.Genre
 import com.techlads.demoapp.R
 import com.techlads.demoapp.model.Movie
 import kotlinx.android.synthetic.main.list_item_movies.view.*
@@ -29,7 +29,7 @@ class MoviesAdapter(private val context: Context, private val list: ArrayList<Mo
                 Glide.with(context).load(Config.IMAGE_URL + movie.poster_path)
                     .apply(RequestOptions().override(400, 400).centerInside()
                         .placeholder(R.drawable.placehoder)).into(itemView.ivPoster)
-                itemView.tvGenre.text = Gener.getGenre(movie.genre_ids)
+                itemView.tvGenre.text = Genre.getGenre(movie.genre_ids)
 
             }
     }
@@ -48,8 +48,8 @@ class MoviesAdapter(private val context: Context, private val list: ArrayList<Mo
 
     fun updateData(newList: List<Movie>?) {
         list.clear()
-        val sortedList = newList.sortedBy { movie -> movie.popularity }
-        list.addAll(sortedList)
+        val sortedList = newList?.sortedBy { movie -> movie.popularity }
+        sortedList?.let { list.addAll(it) }
         notifyDataSetChanged()
     }
 

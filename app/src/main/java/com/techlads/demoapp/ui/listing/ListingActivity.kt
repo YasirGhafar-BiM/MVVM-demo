@@ -5,12 +5,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.techlads.demoapp.R
 import com.techlads.demoapp.model.Movie
 import com.techlads.demoapp.model.Result
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class ListingActivity : AppCompatActivity() {
 
     private val list = ArrayList<Movie>()
@@ -21,6 +25,24 @@ class ListingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        init()
+        subscribeUi()
+    }
+
+    private fun init() {
+        title = "Trending Movies"
+        val layoutManager = LinearLayoutManager(this)
+        rvMovies.layoutManager = layoutManager
+
+        val dividerItemDecoration = DividerItemDecoration(
+            rvMovies.context,
+            layoutManager.orientation
+        )
+
+        rvMovies.addItemDecoration(dividerItemDecoration)
+        moviesAdapter = MoviesAdapter(this, list)
+        rvMovies.adapter = moviesAdapter
     }
 
     private fun subscribeUi() {
@@ -28,7 +50,7 @@ class ListingActivity : AppCompatActivity() {
 
             when (result.status) {
                     Result.Status.SUCCESS -> {
-                        result.data?.movies.let { list ->
+                        result.data?.results.let { list ->
                             moviesAdapter.updateData(list)
                         }
                     loading.visibility = View.GONE

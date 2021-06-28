@@ -25,7 +25,7 @@ class MovieRepository @Inject constructor(
 
             //Cache to database if response is successful
             if (result.status == Result.Status.SUCCESS) {
-                result.data?.movies.let { it ->
+                result.data?.results.let { it ->
                     movieDao.deleteAll(it)
                     movieDao.insertAll(it)
                 }

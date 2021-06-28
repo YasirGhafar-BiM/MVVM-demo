@@ -1,5 +1,5 @@
 package com.techlads.demoapp.model
 
 class TrendingMovieResponse (
-    val movies: List<Movie>?
+    val results: List<Movie>?
     )
