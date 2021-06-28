@@ -1,6 +1,7 @@
 package com.techlads.demoapp.ui.listing
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,9 @@ class MoviesAdapter(private val context: Context, private val list: ArrayList<Mo
 
             fun bind(movie: Movie) {
                 itemView.setOnClickListener {
-                    DetailsActivity.start(context, movie.id)
+                    val intent = Intent(context, DetailsActivity::class.java)
+                    intent.putExtra(DetailsActivity.EXTRAS_MOVIE_ID, movie.id)
+                    context.startActivity(intent)
                 }
                 itemView.tvTitle.text = movie.title
                 Glide.with(context).load(Config.IMAGE_URL + movie.poster_path)

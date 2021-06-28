@@ -14,8 +14,11 @@ import com.techlads.demoapp.Config
 import com.techlads.demoapp.R
 import com.techlads.demoapp.model.MovieDesc
 import com.techlads.demoapp.model.Result
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_details.*
 
+
+@AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<DetailsViewModel>()
@@ -86,11 +89,11 @@ class DetailsActivity : AppCompatActivity() {
     companion object {
         const val EXTRAS_MOVIE_ID = "movie_id"
 
-        fun start(context: Context, movieId: Int): Intent {
+        /*fun start(context: Context, movieId: Int): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(EXTRAS_MOVIE_ID, movieId)
             return intent
-        }
+        }*/
 
     }
 
