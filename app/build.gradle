@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     //id 'kotlin-android-extensions'
     //annotation processing Hilt
-    id 'dagger.hilt.android.plugin'
+    //id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
 }
 
@@ -19,6 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_KEY", "\"{52577e7ae3a086197e871c8041c6e48b}\""
     }
 
     //Instead of adding extentions we can enable View binding is this way now.
